@@ -3,7 +3,7 @@ import { getRandomId } from 'components/random-id'
 import css from 'components/Add-contact/add-contact.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/reducers/contactsSlice';
+import { addContact } from 'redux/operations';
 
 const nameInputId = getRandomId();
 const numerInputId = getRandomId();

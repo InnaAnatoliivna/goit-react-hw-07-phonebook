@@ -1,6 +1,6 @@
 import SavedContact from 'components/SavedContact/savedContact'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/reducers/contactsSlice';
+import deleteContact from 'redux/reducers/contactsSlice';
 import { selectContacts, selectFilter } from 'redux/selectors';
 
 const Contacts = () => {
