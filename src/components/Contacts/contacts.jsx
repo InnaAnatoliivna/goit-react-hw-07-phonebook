@@ -1,12 +1,12 @@
 import SavedContact from 'components/SavedContact/savedContact'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/reducers/contactsSlice';
-import { selectorContacts, selectorFilter } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 const Contacts = () => {
 
-    const contacts = useSelector(selectorContacts);
-    const filter = useSelector(selectorFilter);
+    const contacts = useSelector(selectContacts);
+    const filter = useSelector(selectFilter);
     const dispatch = useDispatch();
 
     const handleClick = (e) => {

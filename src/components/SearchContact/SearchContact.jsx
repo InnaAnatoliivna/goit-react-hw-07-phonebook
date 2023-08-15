@@ -1,11 +1,11 @@
 import css from 'components/SearchContact/searchContact.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from 'redux/reducers/filterSlice';
-import { selectorContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 const SearchContact = ({ searchTitle }) => {
     const dispatch = useDispatch();
-    const contacts = useSelector(selectorContacts);
+    const contacts = useSelector(selectContacts);
 
     const handleSearchInput = e => {
         dispatch(updateFilter(e.target.value.trim()));

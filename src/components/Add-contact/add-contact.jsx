@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getRandomId } from 'components/random-id'
 import css from 'components/Add-contact/add-contact.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectorContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/reducers/contactsSlice';
 
 const nameInputId = getRandomId();
@@ -12,7 +12,7 @@ const AddContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
-    const contacts = useSelector(selectorContacts);
+    const contacts = useSelector(selectContacts);
     const dispatch = useDispatch();
 
     const onChangeInput = evt => {
