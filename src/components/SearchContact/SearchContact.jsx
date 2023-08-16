@@ -1,7 +1,7 @@
 import css from 'components/SearchContact/searchContact.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter } from 'redux/reducers/filterSlice';
-import { selectContacts } from 'redux/selectors';
+import { updateFilter } from '../../redux/reducers/filterSlice';
+import { selectContacts } from '../../redux/selectors';
 
 const SearchContact = ({ searchTitle }) => {
     const dispatch = useDispatch();

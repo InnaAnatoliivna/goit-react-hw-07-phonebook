@@ -1,7 +1,7 @@
 import SavedContact from 'components/SavedContact/savedContact'
 import { useDispatch, useSelector } from 'react-redux';
-import deleteContact from 'redux/reducers/contactsSlice';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { deleteContact, fetchContacts } from '../../redux/operations';
+import { selectContacts, selectFilter } from '../../redux/selectors';
 
 const Contacts = () => {
 
@@ -9,28 +9,35 @@ const Contacts = () => {
     const filter = useSelector(selectFilter);
     const dispatch = useDispatch();
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         if (e.target.tagName === 'BUTTON') {
             const id = e.target.getAttribute('data-id');
-            dispatch(deleteContact(id))
+            console.log(id);
+            await dispatch(deleteContact(id));
+            dispatch(fetchContacts());
         }
     }
 
     const filteredContacts = () => {
-        if (filter !== '') return contacts.filter(contact =>
-            contact.name.toLowerCase().includes(filter.toLowerCase()))
-        else if (filter === '') return contacts;
+        if (filter !== '') {
+            return contacts.filter(contact =>
+                contact.name.toLowerCase().includes(filter.toLowerCase()))
+
+        }
+        else if (filter === '') {
+            return contacts
+        };
     }
 
     return (
         contacts.length > 0 ?
             (<ul onClick={handleClick}>
-                {filteredContacts().map(({ id, name, number }) => (
+                {filteredContacts().map(({ id, name, phone }) => (
                     <SavedContact
                         key={id}
                         id={id}
                         name={name}
-                        number={number}
+                        number={phone}
                     />
                 ))}
             </ul>) : (<p className='text-message'>The contact list is empty.</p>)

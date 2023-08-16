@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getRandomId } from 'components/random-id'
 import css from 'components/Add-contact/add-contact.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
 
 const nameInputId = getRandomId();
 const numerInputId = getRandomId();
@@ -23,12 +25,11 @@ const AddContactForm = () => {
 
     const onAddToContacts = e => {
         e.preventDefault();
-        const idContact = getRandomId();
-        const dataFields = { name: name, number: number, id: idContact };
+        const dataFields = { name: name, phone: number };
         const isContact = contacts.find(contact => contact.name === dataFields.name);
         !isContact ?
             dispatch(addContact(dataFields))
-            : alert(`${name} is already in contacts`);
+            : toast.warn(`${name} is already in contacts`);
         setName('');
         setNumber('');
     }
